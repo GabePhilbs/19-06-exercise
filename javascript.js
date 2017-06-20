@@ -1,34 +1,81 @@
 
 
 
+var slideshow = {
 
-var photoList = ['park','beach'];
+	photoList:['park','beach','mountain'],
 
-var currentPhoto = 0;
+	currentPhoto: 0,
 
-function nextPhoto(){
-	if (currentPhoto < photoList.length -1) {
-		currentPhoto++;
-		console.log(photoList[currentPhoto]);
-	} else{
-		console.log('End of slideshow');
+	nextPhoto: function(){
+		if (this.currentPhoto < this.photoList.length -1) {
+			this.currentPhoto++;
+			console.log(this.photoList[this.currentPhoto]);
+		} else if (this.currentPhoto = this.photoList.length -1){ 
+			this.currentPhoto++;
+			console.log('End of slideshow');
+
+		}else {
+			console.log('End of slideshow');
+		}
+		
+	},
+
+	 prevPhoto: function(){
+		if (this.currentPhoto > 0) {
+			this.currentPhoto--;
+			console.log(this.photoList[this.currentPhoto]);
+		} else{
+			console.log('Beginning of the slideshow');
+
+		}
+		
+	},
+
+
+	getCurrentPhoto: function (){
+		console.log(this.photoList[this.currentPhoto]);
+	},
+
+
+	playInterval: '',
+
+	pause: function(){
+		clearInterval(playInterval)  
+	},
+
+	play: function(){
+		
+		this.currentPhoto--;
+
+		
+		playInterval = setInterval(function(){
+
+			// console.log(slideshow.currentPhoto);
+			// console.log(slideshow.photoList.length - 1);
+
+			if (slideshow.currentPhoto > (slideshow.photoList.length - 1) ){
+				
+				slideshow.pause();
+
+			} else{ slideshow.nextPhoto(); }
+			
+
+		
+		}, 1000);
+
+		
+
+
+		//this.pause();
+		
+
+		// if (this.currentPhoto >= this.photoList.length) {
+		// 	this.pause();
+		// }
+		
+
 
 	}
-	
-}
 
-function prevPhoto(){
-	if (currentPhoto > 0) {
-		currentPhoto--;
-		console.log(photoList[currentPhoto]);
-	} else{
-		console.log('Beginning of the slideshow');
-
-	}
-	
-}
-
-
-function getCurrentPhoto(){
-	console.log(photoList[currentPhoto]);
 }
